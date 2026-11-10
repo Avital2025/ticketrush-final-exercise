@@ -1,0 +1,72 @@
+### git worktree list
+C:/Users/user1/Desktop/פרויקט git/ticketrush                     15fe76e [main]
+C:/Users/user1/Desktop/פרויקט git/ticketrush-early-access        fdc9ade [feature/early-access]
+C:/Users/user1/Desktop/פרויקט git/ticketrush-hotfix              0cef146 [hotfix/price]
+C:/Users/user1/Desktop/פרויקט git/ticketrush-noa-refund          f7e8785 [noa/refund]
+C:/Users/user1/Desktop/פרויקט git/ticketrush-waitlist            fc463e3 [feature/waitlist]
+
+### git branch -a -vv
++ feature/early-access                              fdc9ade (C:/Users/user1/Desktop/פרויקט git/ticketrush-early-access) Update member ticket limit from 4 to 6
++ feature/waitlist                                  fc463e3 (C:/Users/user1/Desktop/פרויקט git/ticketrush-waitlist) Merge branch 'main' into feature/early-access
++ hotfix/price                                      0cef146 (C:/Users/user1/Desktop/פרויקט git/ticketrush-hotfix) Revert "perf: faster price formatting"
+* main                                              15fe76e [origin/main: ahead 17] fix: precise pricing logic for member and student discounts
++ noa/refund                                        f7e8785 (C:/Users/user1/Desktop/פרויקט git/ticketrush-noa-refund) [origin/noa/refund] test: refund tests
+  review/noa-refund                                 fe25726 docs: add code review identifying service fee refund bug
+  remotes/origin/HEAD                               -> origin/main
+  remotes/origin/avital-faraji/feature/early-access fdc9ade Update member ticket limit from 4 to 6
+  remotes/origin/avital-faraji/feature/waitlist     fc463e3 Merge branch 'main' into feature/early-access
+  remotes/origin/avital-faraji/hotfix/price         0cef146 Revert "perf: faster price formatting"
+  remotes/origin/avital-faraji/main                 0b9cdfd fix: calculate member discount on ticket price only and validate quantity
+  remotes/origin/avital-faraji/result               8f3a962 result avital-faraji 69/100
+  remotes/origin/dana/promo                         d4b1e35 test: add student discount tests
+  remotes/origin/main                               6e5b25d feat: friendlier message for empty quantity
+  remotes/origin/noa/refund                         f7e8785 test: refund tests
+  remotes/origin/ruth/fixes                         fee9f58 wip: try new fonts
+
+### git log --graph --oneline --all -n 80
+* 15fe76e (HEAD -> main) fix: precise pricing logic for member and student discounts
+| * fe25726 (review/noa-refund) docs: add code review identifying service fee refund bug
+|/  
+* 9159a13 fix: refine boundary checks and discount calculations
+* 0b9cdfd (origin/avital-faraji/main) fix: calculate member discount on ticket price only and validate quantity
+* 6a04fcf fix: add config.js to .gitignore
+* 6fc5436 fix: update gitignore for config
+* ca6a9f5 feat: add waitlist module
+*   ff00a7f (tag: v1.1) Merge branch 'feature/early-access'
+|\  
+| * fdc9ade (origin/avital-faraji/feature/early-access, feature/early-access) Update member ticket limit from 4 to 6
+| * 71207ae Merge origin/dana/promo and resolve pricing conflicts with final discount rules
+| *   841f293 Merge origin/dana/promo and resolve pricing conflicts according to product rules
+| |\  
+| | * d4b1e35 (origin/dana/promo) test: add student discount tests
+| | * 0841085 feat: student discount (15%)
+* | | ed66c35 security: remove config.js from tracking and add config.example.js
+* | | 7792f89 fix: correct concert date in events.js
+|/ /  
+* |   fc463e3 (origin/avital-faraji/feature/waitlist, feature/waitlist) Merge branch 'main' into feature/early-access
+|\ \  
+| * | 0cef146 (origin/avital-faraji/hotfix/price, hotfix/price) Revert "perf: faster price formatting"
+| |/  
+* / ac3d210 Add early access pricing and member limits
+|/  
+| * 8f3a962 (origin/avital-faraji/result) result avital-faraji 69/100
+| * fee9f58 (origin/ruth/fixes) wip: try new fonts
+| * 72063d7 debug: dump state to console
+| * 20cd6a9 WIP: try removing ticket limits
+| * 8284d98 fix: correct concert date in events.js
+| * 339324e WIP: new checkout flow (do not merge)
+|/  
+| * f7e8785 (origin/noa/refund, noa/refund) test: refund tests
+| * 61bfedd feat: refund calculation for cancelled orders
+|/  
+* 6e5b25d (origin/main, origin/HEAD) feat: friendlier message for empty quantity
+* 9119fe2 fix: typo in hero heading
+* a61f4ad feat: add footer with links
+* 73924c4 perf: faster price formatting
+* 03bd4dd docs: update artist lineup text
+* c44fbf8 feat: add early-access promo banner
+* 62f48b5 (tag: v1.0) feat: purchase page UI
+* f4c58bc feat: payment provider config
+* 2cc7e97 feat: event details data
+* 8a944f6 feat: ticket price calculation with tests
+* ed1b1e9 Initial commit: project skeleton and exercise tooling
