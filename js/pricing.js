@@ -19,8 +19,8 @@ function calcTotal(qty, isMember = false, isStudent = false) {
   return discountedBase + totalServiceFee;
 }
 
-function maxTickets() {
-  return 8;
+function maxTickets(isMember = false) {
+  return isMember ? 6 : 8;
 }
 
 module.exports = { calcTotal, maxTickets };
