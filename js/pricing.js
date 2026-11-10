@@ -1,20 +1,26 @@
-function calcTotal(qty, isMember, isStudent) {
-  const ticketPrice = 362;
+function calcTotal(qty, isMember = false, isStudent = false) {
+  const pricePerTicket = 362;
   const serviceFeePerTicket = 25;
-  
-  const subtotal = qty * ticketPrice;
-  
+  const baseTicketPrice = pricePerTicket - serviceFeePerTicket; // 337 ש"ח בסיס
+
   let discountRate = 0;
-  if (isMember) {
-    discountRate = 0.20; // 20% הנחה למועדון
+  if (isMember && isStudent) {
+    discountRate = 0.20; // הנחה מקסימלית (20%) ללא כפל מבצעים
+  } else if (isMember) {
+    discountRate = 0.20;
   } else if (isStudent) {
-    discountRate = 0.15; // 15% הנחה לסטודנטית
+    discountRate = 0.15;
   }
 
-  const discountedTickets = subtotal * (1 - discountRate);
-  const serviceFee = qty * serviceFeePerTicket;
-  
-  return discountedTickets + serviceFee;
+  const baseTotal = qty * baseTicketPrice;
+  const discountedBase = baseTotal * (1 - discountRate);
+  const totalServiceFee = qty * serviceFeePerTicket;
+
+  return discountedBase + totalServiceFee;
 }
 
-module.exports = { calcTotal };
+function maxTickets() {
+  return 8;
+}
+
+module.exports = { calcTotal, maxTickets };

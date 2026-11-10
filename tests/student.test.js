@@ -1,4 +1,11 @@
 const { calcTotal } = require('../js/pricing');
 
-test('student discount: 2 tickets', function () { assertEq(calcTotal(2, true), 619); });
-test('no discount for regular price', function () { assertEq(calcTotal(2, false), 724); });
+test('student discount: 2 tickets', function () {
+  const total = calcTotal(2, false, true);
+  assertEq(total, 622.9);
+});
+
+test('no discount for regular price', function () {
+  const total = calcTotal(2, false, false);
+  assertEq(total, 724);
+});
