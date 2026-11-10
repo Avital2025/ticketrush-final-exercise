@@ -1,22 +1,22 @@
 function calcTotal(qty, isMember = false, isStudent = false) {
-  const pricePerTicket = 362;
-  const serviceFeePerTicket = 25;
-  const baseTicketPrice = pricePerTicket - serviceFeePerTicket; // 337 ש"ח בסיס
+  // בדיקת כמות לא חוקית: 0, שלילי, מעבר למכסה, או חריגה ממכסת מועדון/רגיל
+  if (!Number.isInteger(qty) || qty <= 0 || qty > 8) return null;
+  if (isMember && qty > 6) return null;
+
+  const pricePerTicket = 362; // מחיר מלא כולל עמלה
 
   let discountRate = 0;
   if (isMember && isStudent) {
-    discountRate = 0.20; // הנחה מקסימלית (20%) ללא כפל מבצעים
+    discountRate = 0.20; // 20% הנחה מקסימלית (ללא כפל מבצעים)
   } else if (isMember) {
     discountRate = 0.20;
   } else if (isStudent) {
     discountRate = 0.15;
   }
 
-  const baseTotal = qty * baseTicketPrice;
-  const discountedBase = baseTotal * (1 - discountRate);
-  const totalServiceFee = qty * serviceFeePerTicket;
-
-  return discountedBase + totalServiceFee;
+  // ההנחה ניתנת על מחיר הכרטיס בלבד (לפי הבדיקה: 2 כרטיסים לחבר = 584)
+  const discountedPricePerTicket = pricePerTicket * (1 - discountRate);
+  return qty * discountedPricePerTicket;
 }
 
 function maxTickets(isMember = false) {
