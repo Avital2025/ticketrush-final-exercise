@@ -1,23 +1,26 @@
-// מחירון TicketRush
-const TICKET_PRICE = 350; // ₪ לכרטיס
-const SERVICE_FEE = 12;   // ₪ עמלת שירות לכל כרטיס
-const REGULAR_MAX_TICKETS = 8;    // מקסימום כרטיסים ללקוחה רגילה
-const MEMBER_MAX_TICKETS = 4;     // מקסימום כרטיסים לחברת מועדון
+function calcTotal(qty, isMember = false, isStudent = false) {
+  const pricePerTicket = 362;
+  const serviceFeePerTicket = 25;
+  const baseTicketPrice = pricePerTicket - serviceFeePerTicket; // 337 ש"ח בסיס
 
-function maxTickets(isMember) {
-  return isMember ? MEMBER_MAX_TICKETS : REGULAR_MAX_TICKETS;
-}
-
-function calcTotal(qty, isMember) {
-  const limit = maxTickets(isMember);
-  if (qty < 1 || qty > limit) {
-    return null;
+  let discountRate = 0;
+  if (isMember && isStudent) {
+    discountRate = 0.20; // הנחה מקסימלית (20%) ללא כפל מבצעים
+  } else if (isMember) {
+    discountRate = 0.20;
+  } else if (isStudent) {
+    discountRate = 0.15;
   }
-  
-  const pricePerTicket = isMember ? TICKET_PRICE * 0.8 : TICKET_PRICE;
-  return qty * (pricePerTicket + SERVICE_FEE);
+
+  const baseTotal = qty * baseTicketPrice;
+  const discountedBase = baseTotal * (1 - discountRate);
+  const totalServiceFee = qty * serviceFeePerTicket;
+
+  return discountedBase + totalServiceFee;
 }
 
-if (typeof module !== 'undefined') {
-  module.exports = { TICKET_PRICE, SERVICE_FEE, MAX_TICKETS: REGULAR_MAX_TICKETS, maxTickets, calcTotal };
+function maxTickets(isMember = false) {
+  return isMember ? 6 : 8;
 }
+
+module.exports = { calcTotal, maxTickets };
